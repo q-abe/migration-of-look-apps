@@ -66,5 +66,8 @@
   "overrides": {
     "undici": "6.13.0"
   },
-  "author": "abetatsurou"
+  "author": "abetatsurou",
+  "prisma": {
+    "seed": "node prisma/seed.cjs"
+  }
 }

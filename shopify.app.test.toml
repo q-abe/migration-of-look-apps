@@ -3,7 +3,7 @@
 client_id = "4cbf8edc62b3109df5379db5f444f254"
 name = "test"
 handle = "test-14462"
-application_url = "https://success-words-prev-fitted.trycloudflare.com"
+application_url = "https://survival-accessory-concord-exclusive.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://success-words-prev-fitted.trycloudflare.com/auth/callback",
-  "https://success-words-prev-fitted.trycloudflare.com/auth/shopify/callback",
-  "https://success-words-prev-fitted.trycloudflare.com/api/auth/callback"
+  "https://survival-accessory-concord-exclusive.trycloudflare.com/auth/callback",
+  "https://survival-accessory-concord-exclusive.trycloudflare.com/auth/shopify/callback",
+  "https://survival-accessory-concord-exclusive.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
