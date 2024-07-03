@@ -9,7 +9,7 @@ import { GalleryEditModal } from '~/component/GalleryEditModal/GalleryEditModal'
 import { useAuthenticatedAPI } from '~/hooks/useAuthenticatedAPI';
 import { useModal } from '~/hooks/useModal';
 import { useMountedState } from '~/hooks/useMountedState';
-import { useToast } from '~/hooks/useToast';
+import { ToastContent, useToast } from '~/hooks/useToast';
 
 const TableHeadings = [
   "ID",

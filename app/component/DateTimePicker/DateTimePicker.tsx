@@ -11,15 +11,14 @@ import {
   Icon
 } from "@shopify/polaris";
 import {
-  Calendar, getTimeChoicesOnDay,
-} from '~/api/helpers/date';
-import {
+  Calendar,
   canConvertDate,
   formatDate,
-  formatForCalendar,
+  formatForCalendar, getTimeChoicesOnDay,
   partialUpdateDate,
   splitDateAsObject,
 } from '~/api/helpers/date';
+
 import { styles } from "./DateTimePicker.style";
 
 /**
