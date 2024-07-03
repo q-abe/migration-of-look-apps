@@ -1,7 +1,7 @@
 import { Button, ButtonGroup } from "@shopify/polaris";
+import { SelectAllButton } from '~/component/SelectAllButton/SelectAllButton';
 
 import DeleteButton from "../DeleteButton/DeleteButton";
-import { SelectAllButton } from "../../SelectAllButton";
 
 type Props = {
   isSelectedAll: boolean;

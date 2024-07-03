@@ -8,13 +8,13 @@ import {
   Thumbnail,
   Tooltip,
 } from "@shopify/polaris";
-import type { HasStringId } from '../../../Documents/Project/Q/public-look-app/src/helpers/drag';
+import type { HasStringId } from '~/api/helpers/drag';
 import DragAbleList, {
   DragableItem,
   DragableHandle,
   DummyDragedItem,
   useDraged,
-} from "./DragableList/DragableList";
+} from "./DragableList/DragAbleList";
 import { css } from "@emotion/react";
 
 export type Product = {

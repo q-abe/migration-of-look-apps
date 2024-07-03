@@ -1,5 +1,3 @@
-import { GalleryResponse } from "../../../Documents/Project/Q/public-look-app/src/types/Gallery.type";
-import { LookRequest } from "../../../Documents/Project/Q/public-look-app/src/types/Look.type";
 import { BaseAPI } from "./BaseAPI";
 
 const API_URI = "/api/galleries/";

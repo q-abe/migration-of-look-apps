@@ -1,7 +1,6 @@
 import type { Dispatch, SetStateAction} from "react";
 import { useCallback, useMemo } from "react";
 import { LookAPI } from '~/api/LookAPI';
-import type { LookCard } from '../../../Documents/Project/Q/public-look-app/src/types/LookCard';
 
 import { useAuthenticatedAPI } from "./useAuthenticatedAPI";
 

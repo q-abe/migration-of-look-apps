@@ -1,21 +1,7 @@
-import {
-  closestCenter,
-  DndContext,
-  DragEndEvent, DragOverlay,
-  DragStartEvent,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
-} from '@dnd-kit/core';
-import {
-  horizontalListSortingStrategy,
-  rectSortingStrategy, SortableContext,
-  sortableKeyboardCoordinates, useSortable,
-  verticalListSortingStrategy,
-} from '@dnd-kit/sortable';
-import { FC, useCallback, useMemo, useState } from 'react';
-import { getIndexById, HasStringId, replaceOrderById } from '../../../../Documents/Project/Q/public-look-app/src/helpers/drag';
+
+import { useCallback, useMemo } from 'react';
+import type { HasStringId} from '~/api/helpers/drag';
+import { replaceOrderById } from '~/api/helpers/drag';
 import { styles } from "./DragableList.style";
 
 export type ReplaceOrderById = typeof replaceOrderById;
@@ -43,7 +29,7 @@ type DragableListProps<T extends HasStringId> = React.PropsWithChildren<{
  * ドラッグ可能な一覧を作るコンポーネント
  * 一覧にしたいコンポーネントをDragableItemでラップし、childrenに並べる
  */
-const DragableList = <T extends HasStringId>({
+const DragAbleList = <T extends HasStringId>({
   items,
   onDropCallback = () => {},
   onDragCallback = () => {},
@@ -107,7 +93,7 @@ const DragableList = <T extends HasStringId>({
   );
 };
 
-DragableList.displayName = "DragableList";
+DragAbleList.displayName = "DragableList";
 
 /**
  * ドラッグ可能なアイテム、DragableListの中で使用する。
@@ -213,4 +199,4 @@ export const useDraged = <T extends HasStringId>(
   };
 };
 
-export default DragableList;
+export default DragAbleList;

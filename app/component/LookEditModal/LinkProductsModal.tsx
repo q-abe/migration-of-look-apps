@@ -1,21 +1,18 @@
-import pkg from '@apollo/client';
-import { SelectPayload } from '@shopify/app-bridge-core/actions/Picker';
+import type { SelectPayload } from '@shopify/app-bridge-core/actions/Picker';
 import { ResourcePicker } from '@shopify/app-bridge/actions';
-import {
-  DetailedHTMLProps, FC, ImgHTMLAttributes, useCallback, useEffect, useMemo, useState,
+import type {
+  DetailedHTMLProps, FC, ImgHTMLAttributes} from "react";
+import { useCallback, useEffect, useMemo, useState,
 } from "react";
 import { css } from "@emotion/react";
 import {
   Button, FormLayout, Layout, Spinner, TextField,
 } from "@shopify/polaris";
-import { Product as ResourceProduct, ResourceSelection } from "@shopify/app-bridge/actions/ResourcePicker";
-import { Product } from '../DragableProductList';
+import type { Product as ResourceProduct, ResourceSelection } from "@shopify/app-bridge/actions/ResourcePicker";
+import { useModal } from '~/hooks/useModal';
+import type { Product } from '../DragAbleProductList';
 import DragAbleProductList from '../DragAbleProductList';
 import { useEdit } from './LookEditModal';
-import { useModal } from '../../hooks/useModal';
-import { GET_PRODUCT_BY_ID } from '../../../../Documents/Project/Q/public-look-app/src/queries/product';
-import { LookCard } from '../../../../Documents/Project/Q/public-look-app/src/types/LookCard';
-import { ProductOnGraphQL } from '../../../../Documents/Project/Q/public-look-app/src/types/ShopifyProduct';
 
 const parseProductFromGraphQL = (product: ProductOnGraphQL): Product => {
   return {

@@ -1,6 +1,7 @@
+import type {
+  FC} from "react";
 import {
   createContext,
-  FC,
   useCallback,
   useContext,
   useEffect,
@@ -8,9 +9,8 @@ import {
 } from "react";
 import type { TabProps} from "@shopify/polaris";
 import { Modal, Tabs } from "@shopify/polaris";
-import { LookAPI } from '../../../../Documents/Project/Q/public-look-app/src/api/LookAPI';
-import { useAuthenticatedAPI } from '../../hooks/useAuthenticatedAPI';
-import { LookCard } from '../../../../Documents/Project/Q/public-look-app/src/types/LookCard';
+import { LookAPI } from '~/api/LookAPI';
+import { useAuthenticatedAPI } from '~/hooks/useAuthenticatedAPI';
 
 import LinkProductsForm from "./LinkProductsModal";
 import SettingForm from "./SettingForm";

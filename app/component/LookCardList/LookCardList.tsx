@@ -1,9 +1,10 @@
 import { InlineStack } from "@shopify/polaris";
+import { SelectIcon } from '@shopify/polaris-icons';
 import type { ComponentProps, FC} from "react";
 import { useCallback } from "react";
+import { ActiveBadge } from '~/component/Icons/ActiveBadge/ActiveBadge';
+import { LookCard } from '~/component/LookCard/LookCard';
 
-import { ActiveBadge, SelectIcon } from "../Icons";
-import { LookCard } from "../LookCard";
 
 type Props = {
   looks: LookCardType[];

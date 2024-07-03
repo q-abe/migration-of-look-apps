@@ -1,18 +1,13 @@
 import { Modal } from "@shopify/polaris";
 import { useCallback, useMemo, useRef } from "react";
-import { useButtonAction } from '../../hooks/useButtonAction';
-import { useLookCardList } from '../../hooks/useLookCardList';
-import { useLooks } from '../../hooks/useLooks';
-import type { LookCard } from '../../../../Documents/Project/Q/public-look-app/src/types/LookCard';
+import { Buttons } from '~/component/GalleryLookAddModal/Buttons/Buttons';
+import { ButtonLayout } from '~/component/Layout/ButtonLayout';
+import { LookCardList } from '~/component/LookCardList/LookCardList';
+import { LookCreator } from '~/component/LookCreator/LookCreator';
+import { useButtonAction } from '~/hooks/useButtonAction';
+import { useLookCardList } from '~/hooks/useLookCardList';
+import { useLooks } from '~/hooks/useLooks';
 
-
-
-
-import { ButtonLayout } from "../Layout";
-import { LookCardList } from "../LookCardList";
-import { LookCreator } from "../LookCreator";
-
-import { Buttons } from "./Buttons";
 
 type Props = {
   addedLooks?: LookCard[];

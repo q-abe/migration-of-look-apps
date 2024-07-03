@@ -1,15 +1,14 @@
 import { DropZone } from "@shopify/polaris";
 import { useCallback, useState } from "react";
-import { LookAPI } from '../../../../Documents/Project/Q/public-look-app/src/api/LookAPI';
-import { useAuthenticatedAPI } from '../../hooks/useAuthenticatedAPI';
-import { ToastContent, useToast } from '../../hooks/useToast';
-import type { LookResponse } from '../../../../Documents/Project/Q/public-look-app/src/types/Look.type';
+import { readFile } from '~/api/helpers/file';
+import { LookAPI } from '~/api/LookAPI';
+import { LookAddModal } from '~/component/LookCreator/LookAddModal/LookAddModal';
+import { useAuthenticatedAPI } from '~/hooks/useAuthenticatedAPI';
+import { ToastContent, useToast } from '~/hooks/useToast';
 
 
 
 
-import { LookAddModal } from "./LookAddModal";
-import { readFile } from "../../../../Documents/Project/Q/public-look-app/src/helpers/file";
 
 /** アップロード可能な画像種別 */
 const validImageTypes = ["image/gif", "image/jpeg", "image/png"];

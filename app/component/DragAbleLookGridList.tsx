@@ -1,19 +1,12 @@
+import { SelectIcon } from '@shopify/polaris-icons';
 import type { ComponentProps} from "react";
 import { useCallback, useMemo } from "react";
+import DragAbleList, { DragableItem, DummyDragedItem, useDraged } from '~/component/DragableList/DragAbleList';
+import { ActiveBadge } from '~/component/Icons/ActiveBadge/ActiveBadge';
+import { DragHandleIcons } from '~/component/Icons/DragHandleIcon/DragHandleIcons';
+import { FeatureIcon } from '~/component/Icons/FeatureIcon/FeatureIcon';
+import { LookCard } from '~/component/LookCard/LookCard';
 
-
-import DragAbleList, {
-  DragableItem,
-  DummyDragedItem,
-  useDraged,
-} from "./DragableList";
-import {
-  ActiveBadge,
-  DragHandleIcons,
-  FeatureIcon,
-  SelectIcon,
-} from "./Icons";
-import { LookCard } from "./LookCard";
 
 type Props = {
   items: LookCardType[];

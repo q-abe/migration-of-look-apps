@@ -11,13 +11,12 @@ import {
   Tag,
   TextField,
 } from "@shopify/polaris";
-import type { Gallery } from '../../../prisma/models/Gallery.model';
-import { GalleryAPI } from '../../../../Documents/Project/Q/public-look-app/src/api/GalleryAPI';
-import { useAuthenticatedAPI } from '../../hooks/useAuthenticatedAPI';
-import type { LookCard } from '../../../../Documents/Project/Q/public-look-app/src/types/LookCard';
+import { GalleryAPI } from '~/api/GalleryAPI';
+import DateTimePicker from '~/component/DateTimePicker/DateTimePicker';
+import { useAuthenticatedAPI } from '~/hooks/useAuthenticatedAPI';
 
 
-import DateTimePicker from "../DateTimePicker";
+
 import { useEdit } from "./LookEditModal";
 
 const SettingForm: FC<{

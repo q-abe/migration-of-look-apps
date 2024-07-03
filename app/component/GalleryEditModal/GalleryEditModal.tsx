@@ -1,25 +1,17 @@
 import { Modal, InlineStack, TextField } from "@shopify/polaris";
 import { useCallback, useMemo, useState } from "react";
-import type { Gallery } from '../../../prisma/models/Gallery.model';
-import { GalleryAPI } from '../../../../Documents/Project/Q/public-look-app/src/api/GalleryAPI';
-import { useAuthenticatedAPI } from '../../hooks/useAuthenticatedAPI';
-import { useButtonAction } from '../../hooks/useButtonAction';
-import { useLookCardList } from '../../hooks/useLookCardList';
-import { useLooks } from '../../hooks/useLooks';
-import { useModal } from '../../hooks/useModal';
-import { ToastContent, useToast } from '../../hooks/useToast';
-import type { LookCard } from '../../../../Documents/Project/Q/public-look-app/src/types/LookCard';
-
-
-
-
-
-import { ButtonLayout } from "../Layout";
-import { GalleryLookAddModal } from "../GalleryLookAddModal";
-import DragAbleLookGridList from "../DragableLookGridList";
-
-import { Buttons } from "./Buttons";
-import LookEditModal from "../LookEditModal";
+import { GalleryAPI } from '~/api/GalleryAPI';
+import DragAbleLookGridList from '~/component/DragAbleLookGridList';
+import { Buttons } from '~/component/GalleryEditModal/Buttons/Buttons';
+import { GalleryLookAddModal } from '~/component/GalleryLookAddModal/GalleryLookAddModal';
+import { ButtonLayout } from '~/component/Layout/ButtonLayout';
+import { LookEditModal } from '~/component/LookEditModal/LookEditModal';
+import { useAuthenticatedAPI } from '~/hooks/useAuthenticatedAPI';
+import { useButtonAction } from '~/hooks/useButtonAction';
+import { useLookCardList } from '~/hooks/useLookCardList';
+import { useLooks } from '~/hooks/useLooks';
+import { useModal } from '~/hooks/useModal';
+import { ToastContent, useToast } from '~/hooks/useToast';
 
 type Props = {
   gallery?: Gallery;

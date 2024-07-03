@@ -1,6 +1,5 @@
-import { Dispatch, SetStateAction, useCallback } from "react";
-import { LookResponse } from '../../../Documents/Project/Q/public-look-app/src/types/Look.type';
-import { LookCard } from '../../../Documents/Project/Q/public-look-app/src/types/LookCard';
+import type { Dispatch, SetStateAction} from "react";
+import { useCallback } from "react";
 
 /**
  * ルック一覧を使用する際のhooks

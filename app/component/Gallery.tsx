@@ -138,40 +138,40 @@ export const Gallery = () => {
   };
 
   return (
-    <p>gallery</p>
-    // <Page>
-    //   {/* TODO: エラー表示 */}
-    //   {false && <Banner />}
-    //   <Page fullWidth>
-    //     <Layout>
-    //       <Layout.Section>
-    //         <InlineStack vertical spacing="loose">
-    //           <InlineStack vertical alignment="trailing">
-    //             <Button primary onClick={handleAddGallery}>
-    //               ギャラリー追加
-    //             </Button>
-    //           </InlineStack>
-    //           <Card>
-    //             <DataTable
-    //               headings={TableHeadings}
-    //               columnContentTypes={TableContentType}
-    //               rows={tableData}
-    //               verticalAlign="middle"
-    //               hideScrollIndicator
-    //             />
-    //           </Card>
-    //         </InlineStack>
-    //       </Layout.Section>
-    //     </Layout>
-    //   </Page>
-    //   <GalleryEditModal
-    //     key={`${galleryInAction?.id}${activeEditModal}`}
-    //     gallery={galleryInAction}
-    //     active={activeEditModal}
-    //     onClose={closeEditModal}
-    //     onSaveGallery={handleSaveGallery}
-    //     onDeleteLooks={handleDeleteLooks}
-    //   />
-    // </Page>
+    // <p>gallery</p>
+    <Page>
+      {/* TODO: エラー表示 */}
+      {false && <Banner />}
+      <Page fullWidth>
+        <Layout>
+          <Layout.Section>
+            <InlineStack vertical spacing="loose">
+              <InlineStack vertical alignment="trailing">
+                <Button primary onClick={handleAddGallery}>
+                  ギャラリー追加
+                </Button>
+              </InlineStack>
+              <Card>
+                <DataTable
+                  headings={TableHeadings}
+                  columnContentTypes={TableContentType}
+                  rows={tableData}
+                  verticalAlign="middle"
+                  hideScrollIndicator
+                />
+              </Card>
+            </InlineStack>
+          </Layout.Section>
+        </Layout>
+      </Page>
+      <GalleryEditModal
+        key={`${galleryInAction?.id}${activeEditModal}`}
+        gallery={galleryInAction}
+        active={activeEditModal}
+        onClose={closeEditModal}
+        onSaveGallery={handleSaveGallery}
+        onDeleteLooks={handleDeleteLooks}
+      />
+    </Page>
   );
 };

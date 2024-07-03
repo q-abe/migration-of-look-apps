@@ -1,6 +1,6 @@
 import { Icon } from "@shopify/polaris";
 import { DragHandleIcon } from '@shopify/polaris-icons';
-import { DragableHandle } from "../../DragableList";
+import { DragableHandle } from '~/component/DragableList/DragAbleList';
 
 type Props = {
   id: number;

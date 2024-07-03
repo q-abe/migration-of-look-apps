@@ -1,5 +1,4 @@
-import type { LookResponse } from "../../../Documents/Project/Q/public-look-app/src/types/Look.type";
-import type { LookCard } from '../../../Documents/Project/Q/public-look-app/src/types/LookCard';
+
 import { BaseAPI } from "./BaseAPI";
 
 const API_URI = "/api/looks/";
