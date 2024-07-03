@@ -1,0 +1,89 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:password@localhost:3307/look"
+}
+
+model galleries {
+  id             Int            @id @default(autoincrement()) // Primary Key
+  title          String? // タイトル
+  is_active      Boolean // 有効/無効
+  registered_at  DateTime? // 登録日
+  modified_at    DateTime? // 更新日
+  published_at   DateTime? // 公開日
+  unpublished_at DateTime? // 非公開日
+  deleted_at     DateTime? // 削除日
+  looks          looks[] // ルック一覧(ギャラリー取得時に`include: Look`を設定した場合に付与される)
+  galleryLook    gallery_looks? // ギャラリーとルックの中間テーブル情報(ルック取得時に`include: Gallery`を設定した場合に付与される)
+}
+
+model gallery_looks {
+  id         Int       @id @default(autoincrement()) // Primary Key
+  galleryId  Int       @unique // ギャラリーID
+  lookId     Int       @unique // ルックID
+  isFeatured Boolean // 注目されているか
+  deletedAt  DateTime? // 削除日
+  gallery    galleries @relation(fields: [galleryId], references: [id])
+  look       looks     @relation(fields: [lookId], references: [id])
+
+  @@unique([galleryId, lookId]) // 複合一意インデックスの定義
+}
+
+model looks {
+  id                   Int             @id @default(autoincrement()) // Primary Key
+  mediaKey             String // Shopify Assetの画像キー
+  mediaUrl             String // Shopify Assetの画像パス
+  title                String? // タイトル
+  isActive             Boolean // 有効/無効
+  shouldDisplayProduct Boolean // 商品に表示するか
+  registeredAt         DateTime? // 登録日
+  modifiedAt           DateTime? // 更新日
+  publishedAt          DateTime? // 公開日
+  unpublishedAt        DateTime? // 非公開日
+  modelDescription     String? // モデル情報
+  deletedAt            DateTime? // 削除日
+  galleryLook          gallery_looks? // ギャラリーとルックの中間テーブル情報(ギャラリー取得時に`include: Look`を設定した場合に付与される)
+  galleries            galleries[] // ギャラリー一覧(ルック取得時に`include: Gallery`を設定した場合に付与される)
+  products             look_products[] // 商品一覧(ルック取得時に`include: LookProduct`を設定した場合に付与される)
+}
+
+model look_products {
+  id            Int       @id @default(autoincrement()) // Primary Key
+  lookId        Int // ルックID
+  productId     String // 商品ID
+  productHandle String
+  spotX         Int? // スポット（横）
+  spotY         Int? // スポット（縦）
+  deletedAt     DateTime? // 削除日
+  look          looks     @relation(fields: [lookId], references: [id])
+}
+
+model Session {
+  id            String    @id
+  shop          String
+  state         String
+  isOnline      Boolean   @default(false)
+  scope         String?
+  expires       DateTime?
+  accessToken   String
+  userId        BigInt?
+  firstName     String? // この行が存在しない可能性が高いです
+  lastName      String?
+  email         String?
+  accountOwner  Boolean
+  locale        String?
+  collaborator  Boolean
+  emailVerified Boolean
+}
+
+// Todo:スネークケースに変換
+
+// 論理削除を実現するためのクエリ例
+// const activeGalleryLooks = await prisma.galleryLook.findMany({
+// where: {
+// deletedAt: null
+// }
+// });
