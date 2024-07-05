@@ -9,6 +9,8 @@ import {
   Button, FormLayout, Layout, Spinner, TextField,
 } from "@shopify/polaris";
 import type { Product as ResourceProduct, ResourceSelection } from "@shopify/app-bridge/actions/ResourcePicker";
+import type { LookCard } from '~/api/types/LookCard';
+import type { ProductOnGraphQL } from '~/api/types/ShopifyProduct';
 import { useModal } from '~/hooks/useModal';
 import type { Product } from '../DragAbleProductList';
 import DragAbleProductList from '../DragAbleProductList';

@@ -1,4 +1,5 @@
-
+import type { LookResponse } from '~/api/types/Look.type';
+import type { LookCard } from '~/api/types/LookCard';
 import { BaseAPI } from "./BaseAPI";
 
 const API_URI = "/api/looks/";
@@ -12,7 +13,8 @@ export class LookAPI extends BaseAPI {
    * @returns ルック情報一覧
    */
   getAll = async (): Promise<LookResponse[]> => {
-    return this.fetch(API_URI).then((res) => res?.json());
+    const result = this.fetch(API_URI).then((res) => res?.json());
+    return result
   };
 
   /**
@@ -21,7 +23,8 @@ export class LookAPI extends BaseAPI {
    * @returns ルック情報
    */
   getByID = async (id: number): Promise<LookResponse> => {
-    return this.fetch(`${API_URI}${id}`).then((res) => res?.json());
+    const result = this.fetch(`${API_URI}${id}`).then((res) => res?.json());
+    return result
   };
 
   /**
@@ -47,6 +50,7 @@ export class LookAPI extends BaseAPI {
   /**
    * 指定されたIDのルック情報を更新します。
    * @param id ルックID
+   * @param look
    * @returns 更新後のルック情報
    */
   update = async (id: number, look: LookCard): Promise<LookResponse> => {

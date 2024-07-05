@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 
 import { getIdParam } from "../helpers/request.js";
 import { getSession } from "../utils/shopifyUtils.js";

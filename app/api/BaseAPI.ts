@@ -1,4 +1,4 @@
-import { ClientApplication } from "@shopify/app-bridge";
+import type { ClientApplication } from "@shopify/app-bridge";
 import { userLoggedInFetch } from "./APIUtils";
 
 export class BaseAPI {

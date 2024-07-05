@@ -3,13 +3,12 @@
 client_id = "4cbf8edc62b3109df5379db5f444f254"
 name = "test"
 handle = "test-14462"
-application_url = "https://controlling-selections-made-sonic.trycloudflare.com"
+application_url = "https://somewhere-tagged-missing-dose.trycloudflare.com"
 embedded = true
 
 [build]
 automatically_update_urls_on_dev = true
-dev_store_url = "q-abe-test.myshopify.com"
-include_config_on_deploy = true
+dev_store_url = "themetestqcoltd.myshopify.com"
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
@@ -17,9 +16,9 @@ scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://controlling-selections-made-sonic.trycloudflare.com/auth/callback",
-  "https://controlling-selections-made-sonic.trycloudflare.com/auth/shopify/callback",
-  "https://controlling-selections-made-sonic.trycloudflare.com/api/auth/callback"
+  "https://somewhere-tagged-missing-dose.trycloudflare.com/auth/callback",
+  "https://somewhere-tagged-missing-dose.trycloudflare.com/auth/shopify/callback",
+  "https://somewhere-tagged-missing-dose.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

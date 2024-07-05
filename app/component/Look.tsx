@@ -1,5 +1,6 @@
-import { InlineStack, Layout, Page } from '@shopify/polaris';
+import { Banner, InlineStack, Layout, Page } from '@shopify/polaris';
 import { useCallback } from "react";
+import type { LookCard } from '~/api/types/LookCard';
 import { ButtonLayout } from '~/component/Layout/ButtonLayout';
 import { Buttons } from '~/component/LookCardList/Buttons';
 import { LookCardList } from '~/component/LookCardList/LookCardList';

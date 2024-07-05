@@ -1,5 +1,7 @@
 import type { Dispatch, SetStateAction} from "react";
 import { useCallback } from "react";
+import type { LookResponse } from '~/api/types/Look.type';
+import type { LookCard } from '~/api/types/LookCard';
 
 /**
  * ルック一覧を使用する際のhooks

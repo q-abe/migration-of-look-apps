@@ -1,40 +1,29 @@
-name = "Example App"
-client_id = "a61950a2cbd5f32876b0b55587ec7a27"
-application_url = "https://www.app.example.com/"
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "075f89f33fabdd07a2803198ecf1ca20"
+name = "temp-look"
+handle = "temp-look"
+application_url = "https://norton-col-tan-put.trycloudflare.com"
 embedded = true
-handle = "example-app"
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "q-abe-test.myshopify.com"
+include_config_on_deploy = true
 
 [access_scopes]
-scopes = "read_products"
-
-[access.admin]
-direct_api_mode = "online"
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = ""
 
 [auth]
 redirect_urls = [
-  "https://app.example.com/api/auth/callback",
-  "https://app.example.com/api/auth/oauth/callback",
+  "https://norton-col-tan-put.trycloudflare.com/auth/callback",
+  "https://norton-col-tan-put.trycloudflare.com/auth/shopify/callback",
+  "https://norton-col-tan-put.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
-api_version = "2024-01"
-[webhooks.privacy_compliance]
-customer_deletion_url = "https://app.example.com/api/webhooks/customer_deletion"
-customer_data_request_url = "https://app.example.com/api/webhooks/customer_request"
-shop_deletion_url = "https://app.example.com/api/webhooks/deletion"
-
-[app_proxy]
-url = "https://app.example.com/api/proxy"
-subpath = "store-pickup"
-prefix = "apps"
+api_version = "2024-07"
 
 [pos]
 embedded = false
-
-[app_preferences]
-url = "https://www.app.example.com/preferences"
-
-[build]
-automatically_update_urls_on_dev = false
-include_config_on_deploy = true
-

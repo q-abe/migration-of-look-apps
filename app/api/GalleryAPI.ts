@@ -1,3 +1,5 @@
+import type { GalleryResponse } from '~/api/types/Gallery.type';
+import type { LookRequest } from '~/api/types/Look.type';
 import { BaseAPI } from "./BaseAPI";
 
 const API_URI = "/api/galleries/";

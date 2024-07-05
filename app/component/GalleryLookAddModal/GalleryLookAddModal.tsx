@@ -1,4 +1,4 @@
-import { Modal } from "@shopify/polaris";
+import { InlineStack, Modal } from "@shopify/polaris";
 import { useCallback, useMemo, useRef } from "react";
 import { Buttons } from '~/component/GalleryLookAddModal/Buttons/Buttons';
 import { ButtonLayout } from '~/component/Layout/ButtonLayout';
@@ -59,7 +59,7 @@ export const GalleryLookAddModal = ({
   return (
     <Modal title="" open={active} onClose={onClose} large>
       <Modal.Section>
-        {/*<InlineStack vertical spacing="loose">*/}
+        <InlineStack vertical spacing="loose">
           <LookCreator onCreate={handleCreateLook} />
           <ButtonLayout
             buttonElement={
@@ -73,7 +73,7 @@ export const GalleryLookAddModal = ({
           >
             <LookCardList looks={looks} onSelectLook={handleSelectLookCard} />
           </ButtonLayout>
-        {/*</InlineStack>*/}
+        </InlineStack>
       </Modal.Section>
     </Modal>
   );
