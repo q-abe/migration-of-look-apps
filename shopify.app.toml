@@ -3,7 +3,7 @@
 client_id = "075f89f33fabdd07a2803198ecf1ca20"
 name = "temp-look"
 handle = "temp-look"
-application_url = "https://norton-col-tan-put.trycloudflare.com"
+application_url = "https://caused-columbia-calcium-gpl.trycloudflare.com"
 embedded = true
 
 [build]
@@ -13,13 +13,13 @@ include_config_on_deploy = true
 
 [access_scopes]
 # Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
-scopes = ""
+scopes = "read_products"
 
 [auth]
 redirect_urls = [
-  "https://norton-col-tan-put.trycloudflare.com/auth/callback",
-  "https://norton-col-tan-put.trycloudflare.com/auth/shopify/callback",
-  "https://norton-col-tan-put.trycloudflare.com/api/auth/callback"
+  "https://caused-columbia-calcium-gpl.trycloudflare.com/auth/callback",
+  "https://caused-columbia-calcium-gpl.trycloudflare.com/auth/shopify/callback",
+  "https://caused-columbia-calcium-gpl.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]
