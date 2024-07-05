@@ -1,15 +1,14 @@
-import { Op } from "sequelize";
+import { PrismaClient } from '@prisma/client';
 
-import { SessionInterface } from "@shopify/shopify-api";
-import { Asset } from "@shopify/shopify-api/dist/rest-resources/2022-04/index.js";
+import { MediaService } from '~/api/server/services/Media.service';
+import type { GalleryResponse } from '~/api/types/Gallery.type';
+import type { LookRequest } from '~/api/types/Look.type';
 
-import { LookRequest } from "../../../../../Documents/Project/Q/public-look-app/src/types/Look.type.js";
-import { Gallery, Look, LookProduct } from "../../database/models";
 
 import { GalleryLookService } from "./GalleryLook.service.js";
-import { MediaService } from "./Media.service.js";
-import { GalleryResponse } from "../../../../../Documents/Project/Q/public-look-app/src/types/Gallery.type.js";
 import { addWidthQuery } from "../utils/urlUtils.js";
+
+const prisma = new PrismaClient();
 
 /**
  * ギャラリーに関するビジネスロッジクを管理する
@@ -19,14 +18,14 @@ export class GalleryService {
    * ギャラリーを全件取得します。Ï
    * @returns ギャラリー一覧
    */
-  static getAll = async (session: SessionInterface) => {
-    const galleries = await Gallery.findAll({
-      order: [["id", "DESC"]],
-      include: Look,
+  static getAll = async () => {
+    const galleries = await prisma.galleries.findMany({
+      orderBy: { id: 'desc' },
+      include: { looks: true },
     });
     if (!galleries.length) return [];
 
-    const medias = await MediaService.getAll(session);
+    const medias = await MediaService.getAll();
     return galleries.map((gallery) => makeResponse(gallery, medias));
   };
 
@@ -35,11 +34,15 @@ export class GalleryService {
    * @param id ギャラリーID
    * @returns ギャラリー
    */
-  static getById = async (session: SessionInterface, id: number) => {
-    const gallery = await Gallery.findByPk(id, { include: Look });
+  static getById = async (id: number) => {
+    const gallery = await prisma.galleries.findUnique(
+      {
+        where: { id },
+        include: { looks: true },
+      });
     if (gallery == null) return null;
 
-    const medias = await MediaService.getAll(session);
+    const medias = await MediaService.getAll();
     return makeResponse(gallery, medias);
   };
 
@@ -55,25 +58,40 @@ export class GalleryService {
    * @returns ギャラリー
    */
   static getByIdWithoutMedia = async (id: number) => {
-    const gallery = await Gallery.findByPk(id, {
-      include: [
-        {
-          model: Look,
-          include: [
-            {
-              model: LookProduct,
-              as: "products",
-              attributes: ["productId", "productHandle"],
+    const gallery = await prisma.galleries.findUnique({
+      where: { id },
+      include: {
+        looks: {
+          include: {
+            products: {
+              select: {
+                productId: true,
+                productHandle: true,
+              },
             },
-          ],
+          },
           where: {
             isActive: true,
-            publishedAt: { [Op.or]: [null, { [Op.lt]: new Date() }] },
-            unpublishedAt: { [Op.or]: [null, { [Op.gt]: new Date() }] },
+            OR: [
+              {
+                publishedAt: null,
+                unpublishedAt: null,
+              },
+              {
+                publishedAt: null,
+                unpublishedAt: { gt: new Date() },
+              },
+              {
+                publishedAt: { lt: new Date() },
+                unpublishedAt: null,
+              },
+              {
+                publishedAt: { lt: new Date() },
+                unpublishedAt: { gt: new Date() },
+              } ],
           },
-          required: false,
         },
-      ],
+      },
     });
     if (gallery == null) return null;
 
@@ -88,16 +106,19 @@ export class GalleryService {
    */
   static create = async (title: string, looks: LookRequest[]) => {
     const now = new Date();
-    const gallery = await Gallery.create({
-      title,
-      isActive: false,
-      registeredAt: now,
-      modifiedAt: now,
+    const createdGallery = await prisma.galleries.create({
+      data: {
+        title,
+        isActive: false,
+        registeredAt: now,
+        modifiedAt: now,
+      },
+      include: { looks: true }, // 必要に応じて関連するlooksを含める
     });
 
     // ギャラリーとルックの中間テーブルも作成
-    await GalleryLookService.create(gallery.id, looks);
-    return { ...gallery.get(), looks };
+    await GalleryLookService.create(createdGallery.id, looks);
+    return { ...createdGallery, looks };
   };
 
   /**
@@ -105,31 +126,32 @@ export class GalleryService {
    * @param id 更新対象のギャラリーID
    * @param title タイトル
    * @param isActive 有効/無効
-   * * @param looks ギャラリーに紐付くルック一覧
    * @returns 更新された数
    */
   static update = async (
-    session: SessionInterface,
     id: number,
     title: string,
     isActive: boolean,
-    looks: LookRequest[]
   ) => {
     // ギャラリーを更新
-    await Gallery.update(
-      {
+    await prisma.galleries.update({
+      where: { id },
+      data: {
         title,
         isActive,
         modifiedAt: new Date(),
       },
-      { where: { id } }
-    );
+      include: { looks: true },
+    });
 
     // ギャラリーとルックの中間テーブルも更新
-    await GalleryLookService.update(id, looks);
+    const updateGallery = await prisma.gallery_looks.findUnique({
+      where: { id },
+      include: { looks: true },
+    });
 
     // 更新後のギャラリーを取得して返す
-    return GalleryService.getById(session, id);
+    return makeResponse(updateGallery, []);
   };
 
   /**
@@ -138,9 +160,11 @@ export class GalleryService {
    * @returns 削除 成功/失敗
    */
   static remove = async (id: number | number[]) => {
-    const destroyedCount = await Gallery.destroy({ where: { id } });
-    await GalleryLookService.remove({ galleryId: id });
-    return !!destroyedCount;
+    const destroyedCount = await prisma.galleries.deleteMany({
+      where: { id: { in: typeof id === 'number' ? [ id ] : id } },
+    });
+
+    return destroyedCount.count > 0;
   };
 }
 
@@ -150,24 +174,23 @@ export class GalleryService {
  * @param medias メディア一覧
  * @returns レスポンス
  */
-const makeResponse = (gallery: Gallery, medias: Asset[]): GalleryResponse => {
+const makeResponse = async (gallery: Gallery, medias): Promise<GalleryResponse> => {
   // ギャラリーと画像を紐付けてレスポンスを生成
   const looks =
-    gallery?.get("looks")?.map((look) => ({
-      ...look.get(),
-      isFeatured: look.get("galleryLook")?.get("isFeatured") ?? false,
-      mediaUrl: medias.find((media) => look.get("mediaKey") === media.key)
-        ?.public_url,
+    gallery?.looks?.map((look) => ({
+      ...look,
+      isFeatured: look.galleryLook?.isFeatured ?? false,
+      mediaUrl: medias.find((media) => look.mediaKey === media.key)?.public_url,
     })) ?? [];
-  return { ...gallery?.get(), looks };
+  return { ...gallery, looks };
 };
 
 const makeResponseWithoutMedia = (gallery: Gallery): GalleryResponse => {
   const looks =
-    gallery?.get("looks")?.map((look) => ({
-      ...look.get(),
-      isFeatured: look.get("galleryLook")?.get("isFeatured") ?? false,
-      mediaUrl: addWidthQuery(look.get("mediaUrl")),
+    gallery?.looks?.map((look) => ({
+      ...look,
+      isFeatured: look.galleryLook?.isFeatured ?? false,
+      mediaUrl: addWidthQuery(look.mediaUrl),
     })) ?? [];
-  return { ...gallery?.get(), looks };
+  return { ...gallery, looks };
 };
