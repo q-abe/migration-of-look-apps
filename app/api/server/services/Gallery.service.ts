@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import type { SessionInterface } from '@shopify/shopify-api';
 
 import { MediaService } from '~/api/server/services/Media.service';
 import type { GalleryResponse } from '~/api/types/Gallery.type';
@@ -18,14 +19,14 @@ export class GalleryService {
    * ギャラリーを全件取得します。Ï
    * @returns ギャラリー一覧
    */
-  static getAll = async () => {
+  static getAll = async (session: SessionInterface) => {
     const galleries = await prisma.galleries.findMany({
       orderBy: { id: 'desc' },
       include: { looks: true },
     });
     if (!galleries.length) return [];
 
-    const medias = await MediaService.getAll();
+    const medias = await MediaService.getAll(session);
     return galleries.map((gallery) => makeResponse(gallery, medias));
   };
 

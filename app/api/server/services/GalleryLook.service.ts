@@ -1,6 +1,4 @@
-import { LookRequest } from "../../../../../Documents/Project/Q/public-look-app/src/types/Look.type.js";
-import { GalleryLook } from "../../database/models";
-import { GalleryRequest } from "../../../../../Documents/Project/Q/public-look-app/src/types/Gallery.type.js";
+import type { LookRequest } from '~/api/types/Look.type';
 
 /**
  * ギャラリーとルックの中間テーブルに関するビジネスロッジクを管理するクラス
@@ -12,7 +10,7 @@ export class GalleryLookService {
    * @returns ギャラリールック一覧
    */
   static getAll = async (galleryId: number) => {
-    return GalleryLook.findAll({
+    return prisma.gallery_looks.findMany({
       where: {
         galleryId,
       },
@@ -25,7 +23,7 @@ export class GalleryLookService {
    * @returns ギャラリールック
    */
   static getById = async (id: number) => {
-    return GalleryLook.findByPk(id);
+    return prisma.gallery_looks.findUnique({ where: { id } });
   };
 
   /**
@@ -36,7 +34,7 @@ export class GalleryLookService {
    */
   static create = async (galleryId: number, looks: LookRequest[]) => {
     /* DBにギャラリーとルックの中間テーブルを保存 */
-    return GalleryLook.bulkCreate(
+    return prisma.gallery_looks.GalleryLook.bulkCreate(
       looks.map((look) => ({
         galleryId,
         lookId: look.id,

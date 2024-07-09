@@ -1,8 +1,6 @@
-import { SessionInterface } from "@shopify/shopify-api";
-import { Asset } from "@shopify/shopify-api/dist/rest-resources/2022-04/asset.js";
-import { GalleryRequest } from "../../../../../Documents/Project/Q/public-look-app/src/types/Gallery.type.js";
-import { LookResponse } from "../../../../../Documents/Project/Q/public-look-app/src/types/Look.type.js";
-import { Gallery, Look, LookProduct } from "../../database/models";
+import type { SessionInterface } from '@shopify/shopify-api';
+import { Gallery } from '~/component/Gallery';
+import { Look } from '~/component/Look';
 import { GalleryLookService } from "./GalleryLook.service.js";
 import { MediaService } from "./Media.service.js";
 import { LookProductService } from "./LookProduct.service.js";

@@ -1,5 +1,3 @@
-import { LookProduct } from "../../database/models";
-
 /**
  * LookProductに関するビジネスロッジクを管理するクラス
  */
@@ -9,7 +7,7 @@ export class LookProductService {
    * @returns LookProduct情報一覧
    */
   static getAll = async () => {
-    return LookProduct.findAll();
+    return prisma.look_products.findMany();
   };
 
   /**
@@ -18,7 +16,7 @@ export class LookProductService {
    * @returns LookProduct情報
    */
   static getById = async (id: number) => {
-    return LookProduct.findByPk(id);
+    return prisma.look_products.findUnique(id);
   };
 
   /**
