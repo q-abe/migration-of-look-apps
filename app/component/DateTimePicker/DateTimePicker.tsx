@@ -10,8 +10,9 @@ import {
   Listbox,
   Icon
 } from "@shopify/polaris";
+import type {
+  Calendar} from '~/api/helpers/date';
 import {
-  Calendar,
   canConvertDate,
   formatDate,
   formatForCalendar, getTimeChoicesOnDay,

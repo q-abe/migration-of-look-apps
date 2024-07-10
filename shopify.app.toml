@@ -3,7 +3,7 @@
 client_id = "075f89f33fabdd07a2803198ecf1ca20"
 name = "temp-look"
 handle = "temp-look"
-application_url = "https://assume-albums-treating-liberia.trycloudflare.com"
+application_url = "https://experiencing-hospitality-damaged-ultimately.trycloudflare.com"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "read_products"
 
 [auth]
 redirect_urls = [
-  "https://assume-albums-treating-liberia.trycloudflare.com/auth/callback",
-  "https://assume-albums-treating-liberia.trycloudflare.com/auth/shopify/callback",
-  "https://assume-albums-treating-liberia.trycloudflare.com/api/auth/callback"
+  "https://experiencing-hospitality-damaged-ultimately.trycloudflare.com/auth/callback",
+  "https://experiencing-hospitality-damaged-ultimately.trycloudflare.com/auth/shopify/callback",
+  "https://experiencing-hospitality-damaged-ultimately.trycloudflare.com/api/auth/callback"
 ]
 
 [webhooks]

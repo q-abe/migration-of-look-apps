@@ -1,12 +1,6 @@
 import type { LoaderFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
-import {
-  Links,
-  Meta,
-  Outlet,
-  Scripts, ScrollRestoration,
-  useLoaderData,
-} from "@remix-run/react";
+import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData, } from "@remix-run/react";
 
 type LoaderData = {
   SHOPIFY_API_KEY: string;
